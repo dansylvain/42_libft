@@ -25,6 +25,8 @@ make
 This will compile the library and create a static library file named libft.a in the project directory.
 ## Dependencies
 
+My implementation of the "libft" project includes all necessary dependencies within the source code, requiring no additional installations.
+
 ## Adding "libft" as a Dependency
 
 To add "libft" as a dependency in your project, follow these steps:
