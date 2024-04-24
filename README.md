@@ -63,3 +63,9 @@ int main() {
     return 0;
 }
 ```
+In this example:
+
+* We include the standard <stdio.h> header for using printf.
+* We include "libft.h" to access the function prototypes provided by the "libft" library.
+* We call the ft_strlen function from "libft" to calculate the length of the string "Hello, world!".
+* We print the length of the string using printf.
