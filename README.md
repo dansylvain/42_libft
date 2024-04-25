@@ -43,7 +43,8 @@ $(NAME): $(OBJ) $(LIBFT_DIR)/libft.a
 $(LIBFT_DIR)/libft.a:
     make -C $(LIBFT_DIR)
 ```
-Replace path/to/libft with the actual path to the "libft" directory in your project.
+> [!IMPORTANT]
+> Replace path/to/libft with the actual path to the "libft" directory in your project.
 * Update your project's compilation rules to ensure that "libft" is compiled before your project.
 
 ### Using the Library Functions
@@ -51,7 +52,8 @@ Once you've added "libft" as a dependency in your project's Makefile, you can us
 
 This approach allows for seamless integration of "libft" into your project's build process, ensuring that the library is compiled and linked automatically whenever your project is built.
 ### include the header file
-Don't forget to include the libft.h header file in your source file:
+> [!IMPORTANT]
+> Don't forget to include the libft.h header file in your source file:
 ```c
 #include "libft.h"
 #include <stdio.h>
@@ -71,3 +73,6 @@ In this example:
 * We include "libft.h" to access the function prototypes provided by the "libft" library.
 * We call the ft_strlen function from "libft" to calculate the length of the string "Hello, world!".
 * We print the length of the string using printf.
+
+Make good use of libft! 🔧
+
