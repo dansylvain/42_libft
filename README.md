@@ -14,7 +14,7 @@ The primary goal of the "libft" project is to enable C programmers to streamline
 To use the "libft" library in your project, clone the repository containing the library files from GitHub:
 
 ```bash
-git clone <https://github.com/dansylvain/42_libft>
+git clone https://github.com/dansylvain/42_libft libft
 ```
 ### Compiling the Library
 Navigate to the project directory and compile the library using the provided Makefile. Here's how:
