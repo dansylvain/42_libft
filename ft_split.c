@@ -7,79 +7,76 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 09:45:20 by dan               #+#    #+#             */
 /*   Updated: 2023/10/23 10:27:26 by dan              ###   ########.fr       */
-/*                                                                            */
+/*   code updated 20/09/24... for the fun of it.                              */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-static int	count_words(char const *s, char c)
+int	func3(char *cs, char c)
 {
-	const char	*start = s;
-	int			word_qtty;
-
-	word_qtty = 0;
-	while (*s)
-	{
-		if (*s != c && (s == start || *(s - 1) == c))
-			word_qtty++;
-		s++;
-	}
-	return (word_qtty);
+	while (*cs)
+		if (*cs++ == c)
+			return (1);
+	return (0);
 }
 
-static char	*add_new_word(char const **s, char c)
+int	func2(char **tab, int nbr, int j)
 {
-	char	*word_start;
-	char	*word;
-	int		word_len;
-	int		i;
-
-	while (**s == c)
-		(*s)++;
-	word_start = (char *)*s;
-	word_len = 0;
-	while (**s && **s != c)
+	if (j == 0)
+		return (42);
+	tab[nbr] = (char *)malloc(sizeof(char) * (j + 1));
+	if (tab[nbr] == 0)
 	{
-		word_len++;
-		(*s)++;
+		while (nbr)
+			free(tab[nbr--]);
+		return (free(tab), 0);
 	}
-	word = (char *)malloc(sizeof(char) * (word_len + 1));
-	if (!word)
-		return (NULL);
-	word[word_len] = '\0';
-	i = 0;
-	while (i < word_len)
-	{
-		word[i] = word_start[i];
-		i++;
-	}
-	return (word);
+	tab[nbr][j] = '\0';
+	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+int	func(char *str, char *cs, char **tab, int i[])
+{
+	i[2] = 0;
+	i[0] = 0;
+	while (str[i[0]])
+	{
+		i[1] = 0;
+		while (str[i[0]] && func3(cs, str[i[0]]))
+			i[0]++;
+		if (!str[i[0]])
+			break ;
+		while (str[i[0]] && !func3(cs, str[i[0]]))
+		{
+			if (i[3])
+				tab[i[2]][i[1]] = str[i[0]];
+			i[0]++;
+			i[1]++;
+		}
+		if (tab && !i[3])
+			if (func2(tab, i[2], i[1]) == 0)
+				return (-1);
+		if (!str[i[0]] || func3(cs, str[i[0]]))
+			i[2]++;
+	}
+	return (i[2]);
+}
+
+char	**ft_split(char *str, char *cs)
 {
 	char	**tab;
-	int		word_qtty;
-	int		i;
+	int		i[5];
 
-	if (!s)
-		return (NULL);
-	word_qtty = count_words(s, c);
-	tab = (char **)ft_calloc((word_qtty + 1), sizeof(char *));
+	i[3] = 0;
+	i[4] = func(str, cs, NULL, i);
+	tab = (char **)malloc(sizeof(char *) * (i[4] + 1));
 	if (tab == NULL)
 		return (NULL);
-	i = 0;
-	while (i < word_qtty)
-	{
-		tab[i] = add_new_word(&s, c);
-		if (!tab[i])
-		{
-			while (i >= 0)
-				free(tab[i--]);
-			free(tab);
-			return (NULL);
-		}
-		i++;
-	}
-	return (tab);
+	if (func(str, cs, tab, i) == 0)
+		return (free(tab), NULL);
+	i[3] = 1;
+	if (func(str, cs, tab, i) == 0)
+		return (free(tab), NULL);
+	return (tab[i[4]] = NULL, tab);
 }
