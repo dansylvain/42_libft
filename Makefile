@@ -49,7 +49,13 @@ SRC =		ft_atoi.c \
 			ft_strtrim.c \
 			ft_substr.c \
 			ft_tolower.c \
-			ft_toupper.c
+			ft_toupper.c \
+			ft_printf.c \
+			ft_printf_utils.c \
+			print_functions.c \
+			print_functions_2.c \
+			specifier_handler_funcs.c \
+			specifier_handler_funcs_2.c
 
 SRC_BONUS = ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \
